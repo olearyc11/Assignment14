@@ -12,7 +12,7 @@
         while (!username) {
             username = prompt("Enter your username:")
             if (username) {
-                fetch('/welcome/save', {
+                fetch('/welcome', {
                     method: 'POST',
 
                     headers: {
@@ -27,5 +27,8 @@
             }
         }
     </script>
+    <div>
+
+    </div>
 </body>
 </html>

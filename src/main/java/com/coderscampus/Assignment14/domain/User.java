@@ -1,8 +1,11 @@
 package com.coderscampus.Assignment14.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
 
     private Long id;
+//    @JsonProperty("username") not needed?
     private String username;
 
     public User(Long id, String username) {
