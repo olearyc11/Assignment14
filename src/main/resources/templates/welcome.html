@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+    <h2>Join A Channel</h2>
+    <script>
+        let username = null
+
+        while (!username) {
+            username = prompt("Enter your username:")
+            if (username) {
+                fetch('/welcome/save', {
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify( {username: username} )
+                })
+                    .then(response => response.text())
+                    .catch(error => console.error(error));
+            } else {
+                alert("Username cannot be empty, please enter a valid username")
+            }
+        }
+    </script>
+</body>
+</html>
