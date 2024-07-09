@@ -25,9 +25,11 @@ public class WelcomeController {
     @PostMapping("/welcome")
     public String saveUser(@RequestBody User user, HttpSession session) {
         userService.save(user);
-        System.out.println("User saved");
-        System.out.println(user);
+        System.out.println("User saved: " + user);
         session.setAttribute("username", user.getUsername());
+        session.setAttribute("userId", user.getUserId());
+        System.out.println("Session username: " + session.getAttribute("username"));
+        System.out.println("Session userID: " + session.getAttribute("userId"));
         return "redirect:/welcome";
     }
 

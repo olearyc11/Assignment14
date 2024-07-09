@@ -24,15 +24,16 @@ public class ChannelController {
     private MessageService messageService;
 
     @GetMapping("/channels/{channelId}")
-    public String getChannel(@PathVariable Long channelId, @RequestParam(required = false) String username, HttpSession httpSession) {
+    public String getChannel(@PathVariable Long channelId, HttpSession httpSession, ModelMap model) {
         Long userId = (Long) httpSession.getAttribute("user_id");
-            if (userId == null) {
-            return "redirect:/login";
+        System.out.println("User ID from session: " + userId);
+        if (userId == null) {
+            return "redirect:/welcome";
         }
         Channel channel = channelService.findChannelById(channelId);
+        model.put("channel", channel);
         return "channel";
     }
-
 
 
 }
