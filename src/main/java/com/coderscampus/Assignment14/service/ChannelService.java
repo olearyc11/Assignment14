@@ -27,4 +27,12 @@ public class ChannelService {
         channels.add(channel);
     }
 
+    public Channel findChannelById(Long channelId) {
+        getAllChannels();
+        for (Channel channel : channels) {
+            if (channel.getChannelId().equals(channelId)) {
+                return channel;
+            }
+        } return null;
+    }
 }

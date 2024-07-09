@@ -15,8 +15,8 @@ public class UserService {
     private AtomicLong idCounter = new AtomicLong();
 
     public void save(User user) {
-        if (user.getId() == null) {
-            user.setId(idCounter.incrementAndGet());
+        if (user.getUserId() == null) {
+            user.setUserId(idCounter.incrementAndGet());
         }
         userRepository.save(user);
     }

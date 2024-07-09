@@ -2,26 +2,26 @@ package com.coderscampus.Assignment14.domain;
 
 public class Message {
 
-    private Long id;
+    private Long messageId;
     private String message;
 
     private User user;
 
     private Channel channel;
 
-    public Message(Long id, String message, User user, Channel channel) {
-        this.id = id;
+    public Message(Long messageId, String message, User user, Channel channel) {
+        this.messageId = messageId;
         this.message = message;
         this.user = user;
         this.channel = channel;
     }
 
-    public Long getId() {
-        return id;
+    public Long getMessageId() {
+        return messageId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMessageId(Long messageId) {
+        this.messageId = messageId;
     }
 
     public String getMessage() {
@@ -51,7 +51,7 @@ public class Message {
     @Override
     public String toString() {
         return "Message{" +
-                "id=" + id +
+                "id=" + messageId +
                 ", message='" + message + '\'' +
                 ", user=" + user +
                 ", channel=" + channel +

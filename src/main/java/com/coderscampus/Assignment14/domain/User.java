@@ -1,24 +1,22 @@
 package com.coderscampus.Assignment14.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class User {
 
-    private Long id;
+    private Long userId;
 //    @JsonProperty("username") not needed?
     private String username;
 
-    public User(Long id, String username) {
-        this.id = id;
+    public User(Long userId, String username) {
+        this.userId = userId;
         this.username = username;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -32,7 +30,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + userId +
                 ", username='" + username + '\'' +
                 '}';
     }

@@ -4,22 +4,22 @@ import java.util.List;
 
 public class Channel {
 
-    private Long id;
+    private Long channelId;
     private String name;
     private List<Message> messages;
 
-    public Channel(Long id, String name, List<Message> messages) {
-        this.id = id;
+    public Channel(Long channelId, String name, List<Message> messages) {
+        this.channelId = channelId;
         this.name = name;
         this.messages = messages;
     }
 
-    public Long getId() {
-        return id;
+    public Long getChannelId() {
+        return channelId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setChannelId(Long channelId) {
+        this.channelId = channelId;
     }
 
     public String getName() {
@@ -41,7 +41,7 @@ public class Channel {
     @Override
     public String toString() {
         return "Channel{" +
-                "id=" + id +
+                "id=" + channelId +
                 ", name='" + name + '\'' +
                 ", messages=" + messages +
                 '}';
