@@ -12,25 +12,29 @@
         </li>
     </ul>
     <script>
-        let username = null
+        document.addEventListener("DOMContentLoaded", function() {
+            let username = sessionStorage.getItem('username')
+            if (!username) {
+                while (!username) {
+                    username = prompt("Enter your username:")
+                    if (username) {
+                        sessionStorage.setItem("username", username)
+                        fetch('/welcome', {
+                            method: 'POST',
 
-        while (!username) {
-            username = prompt("Enter your username:")
-            if (username) {
-                fetch('/welcome', {
-                    method: 'POST',
-
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify( {username: username} )
-                })
-                    .then(response => response.text())
-                    .catch(error => console.error(error));
-            } else {
-                alert("Username cannot be empty, please enter a valid username")
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify( {username: username} )
+                        })
+                            .then(response => response.text())
+                            .catch(error => console.error(error))
+                    } else {
+                        alert("Username cannot be empty, please enter a valid username")
+                    }
+                }
             }
-        }
+        })
     </script>
 </body>
 </html>

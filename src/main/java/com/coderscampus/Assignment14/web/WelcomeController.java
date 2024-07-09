@@ -5,6 +5,7 @@ import com.coderscampus.Assignment14.domain.User;
 import com.coderscampus.Assignment14.service.ChannelService;
 import com.coderscampus.Assignment14.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,15 +23,21 @@ public class WelcomeController {
 
 
     @PostMapping("/welcome")
-    public String saveUser(@RequestBody User user) {
+    public String saveUser(@RequestBody User user, HttpSession session) {
         userService.save(user);
         System.out.println("User saved");
         System.out.println(user);
+        session.setAttribute("username", user.getUsername());
         return "redirect:/welcome";
     }
 
     @GetMapping("/welcome")
-    public String welcome(ModelMap model) {
+    public String welcome(ModelMap model, HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId != null) {
+            User user = userService.findUserById(userId);
+            model.put("user", user);
+        }
         List<Channel> channels = channelService.getAllChannels();
         model.put("channels", channels);
         return "welcome";

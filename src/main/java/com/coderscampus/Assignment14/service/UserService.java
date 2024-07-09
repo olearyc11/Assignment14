@@ -12,12 +12,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-    private AtomicLong idCounter = new AtomicLong();
+
 
     public void save(User user) {
-        if (user.getUserId() == null) {
-            user.setUserId(idCounter.incrementAndGet());
-        }
         userRepository.save(user);
     }
 
@@ -26,4 +23,7 @@ public class UserService {
     }
 
 
+    public User findUserById(Long userId) {
+        return userRepository.findByUserId(userId);
+    }
 }

@@ -7,13 +7,15 @@ public class Message {
 
     private User user;
 
-    private Channel channel;
+    private Long channelId;
 
-    public Message(Long messageId, String message, User user, Channel channel) {
+
+
+    public Message(Long messageId, String message, User user, Long channelId) {
         this.messageId = messageId;
         this.message = message;
         this.user = user;
-        this.channel = channel;
+        this.channelId = channelId;
     }
 
     public Long getMessageId() {
@@ -40,13 +42,14 @@ public class Message {
         this.user = user;
     }
 
-    public Channel getChannel() {
-        return channel;
+    public Long getChannelId() {
+        return channelId;
     }
 
-    public void setChannel(Channel channel) {
-        this.channel = channel;
+    public void setChannelId(Long channelId) {
+        this.channelId = channelId;
     }
+
 
     @Override
     public String toString() {
@@ -54,7 +57,7 @@ public class Message {
                 "id=" + messageId +
                 ", message='" + message + '\'' +
                 ", user=" + user +
-                ", channel=" + channel +
+                ", channelId=" + channelId +
                 '}';
     }
 }

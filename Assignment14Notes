@@ -1,0 +1,7 @@
+Httpsession
+    -> unique to ONE user, hence the storage confusion
+    -> still save to the collection
+    -> data stored in a session is unique to that user
+        - like username
+        -
+
