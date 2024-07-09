@@ -8,7 +8,7 @@
     <h2>Join A Channel</h2>
     <ul id="channel-list">
         <li th:each="channel : ${channels}">
-            <a th:href="@{/channels/{channelId}(channelId=${channel.id})}" th:text="${channel.name}"></a>
+            <a th:href="@{/channels/{channelId}(channelId=${channel.channelId})}" th:text="${channel.name}"></a>
         </li>
     </ul>
     <script>
@@ -32,8 +32,5 @@
             }
         }
     </script>
-    <div>
-
-    </div>
 </body>
 </html>
