@@ -5,3 +5,9 @@ Httpsession
         - like username
         -
 
+@RequestBody annotation
+    -> the front-end sends JSON data via username via the prompt
+    -> this annotation instructs it to convert the JSON data into a User object
+    -> Spring automatically maps it assuming the User class has a field "username"
+
+

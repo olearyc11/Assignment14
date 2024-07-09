@@ -4,25 +4,7 @@
     <meta charset="UTF-8">
     <title th:text="${channel.name}"></title>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const messageBox = document.querySelector("#messageBox")
-            const messageInput = document.querySelector("#messageInput")
-            const chatRoom = document.querySelector("#chatRoom")
-            // const channelId = /*[[${channel.channelId}]]*/
 
-            let username = sessionStorage.getItem('username')
-            if (!username) {
-
-            }
-
-        }
-
-        function fetchMessages() {
-            fetch("/channels/messages?{channelId}(channelId=${channel.channelId})}"
-
-
-
-        }
 
     </script>
 </head>
