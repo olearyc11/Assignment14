@@ -33,6 +33,7 @@ public class ChannelService {
             if (channel.getChannelId().equals(channelId)) {
                 return channel;
             }
-        } return null;
+        }
+        return null;
     }
 }
