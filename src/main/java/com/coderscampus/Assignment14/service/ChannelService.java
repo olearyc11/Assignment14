@@ -1,15 +1,23 @@
 package com.coderscampus.Assignment14.service;
 
 import com.coderscampus.Assignment14.domain.Channel;
+import com.coderscampus.Assignment14.domain.Message;
+import com.coderscampus.Assignment14.repository.ChannelRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ChannelService {
 
+    @Autowired
+    ChannelRepository channelRepository;
+
     private List<Channel> channels = new ArrayList<>();
+    private List<Message> messages = new ArrayList<>();
 
     public ChannelService() {
         channels.add(new Channel(1L, "Business", new ArrayList<>()));
@@ -19,12 +27,12 @@ public class ChannelService {
         channels.add(new Channel(5L, "Tech", new ArrayList<>()));
     }
 
-    public List<Channel> getAllChannels() {
-        return channels;
+    public Map<Long, Channel> getAllChannels() {
+        return channelRepository.getAllChannels();
     }
 
-    public void addChannel(Channel channel) {
-        channels.add(channel);
+    public Channel saveChannel(Channel channel) {
+        return channelRepository.saveChannel(channel);
     }
 
     public Channel findChannelById(Long channelId) {
@@ -35,5 +43,15 @@ public class ChannelService {
             }
         }
         return null;
+    }
+
+    public List<Message> getMessagesByChannelId(Channel channel) {
+        List<Message> channelMessages = new ArrayList<>();
+        for (Message message : messages) {
+            if (message.getChannelId().equals(channel.getChannelId())) {
+                channelMessages.add(message);
+            }
+        }
+        return channelMessages;
     }
 }

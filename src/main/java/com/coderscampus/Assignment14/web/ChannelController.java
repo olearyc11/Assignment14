@@ -1,6 +1,7 @@
 package com.coderscampus.Assignment14.web;
 
 import com.coderscampus.Assignment14.domain.Channel;
+import com.coderscampus.Assignment14.domain.Message;
 import com.coderscampus.Assignment14.domain.User;
 import com.coderscampus.Assignment14.service.ChannelService;
 import com.coderscampus.Assignment14.service.MessageService;
@@ -9,9 +10,9 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class ChannelController {
@@ -34,6 +35,13 @@ public class ChannelController {
         model.put("channel", channel);
         model.put("user", user);
         return "channel";
+    }
+
+    @GetMapping("/channels/{channelId}/messages")
+    @ResponseBody
+    public List<Message> getChannelMessages(@PathVariable Long channelId) {
+        Channel channel = channelService.findChannelById(channelId);
+        return messageService.getMessagesByChannelId(channel);
     }
 
 

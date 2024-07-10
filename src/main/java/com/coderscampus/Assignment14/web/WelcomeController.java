@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class WelcomeController {
@@ -40,7 +41,7 @@ public class WelcomeController {
             User user = userService.findUserById(userId);
             model.put("user", user);
         }
-        List<Channel> channels = channelService.getAllChannels();
+        Map<Long, Channel> channels = channelService.getAllChannels();
         model.put("channels", channels);
         return "welcome";
     }
