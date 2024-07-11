@@ -11,17 +11,18 @@ import java.util.concurrent.atomic.AtomicLong;
 public class UserRepository {
 
     private List<User> users = new ArrayList<>();
-    private AtomicLong idCounter = new AtomicLong();
+    private AtomicLong userIdGenerator = new AtomicLong();
 
     public List<User> findAll() {
         return users;
     }
 
-    public void save(User user) {
+    public User save(User user) {
         if (user.getUserId() == null) {
-            user.setUserId(idCounter.incrementAndGet());
+            user.setUserId(userIdGenerator.incrementAndGet());
         }
         users.add(user);
+        return user;
     }
 
     public User findByUserId(Long userId) {

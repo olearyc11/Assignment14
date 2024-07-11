@@ -41,7 +41,7 @@ public class WelcomeController {
             User user = userService.findUserById(userId);
             model.put("user", user);
         }
-        Map<Long, Channel> channels = channelService.getAllChannels();
+        List<Channel> channels = channelService.getAllChannels();
         model.put("channels", channels);
         return "welcome";
     }

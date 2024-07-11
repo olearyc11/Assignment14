@@ -5,9 +5,10 @@ document.addEventListener("DOMContentLoaded", function() {
             username = prompt("Enter your username:")
             if (username) {
                 sessionStorage.setItem("username", username)
+                let sessionUsername = sessionStorage.getItem("username")
+                console.log("Username set in session storage: " + sessionUsername)
                 fetch('/welcome', {
                     method: 'POST',
-
                     headers: {
                         'Content-Type': 'application/json'
                     },

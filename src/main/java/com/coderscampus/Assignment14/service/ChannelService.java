@@ -16,18 +16,7 @@ public class ChannelService {
     @Autowired
     ChannelRepository channelRepository;
 
-    private List<Channel> channels = new ArrayList<>();
-    private List<Message> messages = new ArrayList<>();
-
-    public ChannelService() {
-        channels.add(new Channel(1L, "Business", new ArrayList<>()));
-        channels.add(new Channel(2L, "Cooking", new ArrayList<>()));
-        channels.add(new Channel(3L, "Gaming", new ArrayList<>()));
-        channels.add(new Channel(4L, "Sports", new ArrayList<>()));
-        channels.add(new Channel(5L, "Tech", new ArrayList<>()));
-    }
-
-    public Map<Long, Channel> getAllChannels() {
+    public List<Channel> getAllChannels() {
         return channelRepository.getAllChannels();
     }
 
@@ -36,22 +25,10 @@ public class ChannelService {
     }
 
     public Channel findChannelById(Long channelId) {
-        getAllChannels();
-        for (Channel channel : channels) {
-            if (channel.getChannelId().equals(channelId)) {
-                return channel;
-            }
-        }
-        return null;
+        return channelRepository.findChannelById(channelId);
     }
 
     public List<Message> getMessagesByChannelId(Channel channel) {
-        List<Message> channelMessages = new ArrayList<>();
-        for (Message message : messages) {
-            if (message.getChannelId().equals(channel.getChannelId())) {
-                channelMessages.add(message);
-            }
-        }
-        return channelMessages;
+        return channelRepository.getMessagesByChannelId(channel);
     }
 }

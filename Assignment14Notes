@@ -11,3 +11,12 @@ Httpsession
     -> Spring automatically maps it assuming the User class has a field "username"
 
 
+Storage
+    -> HTTPSession
+        - storage on server side for the user's entire session
+    -> Java Storage
+        - uses databases to store after session has ended
+        - in this case, just using collections
+    -> Session Storage
+        - browser's storage
+        - client side, unlike Httpsession (server side)
