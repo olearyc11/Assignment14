@@ -44,5 +44,16 @@ public class ChannelController {
         return messageService.getMessagesByChannelId(channel);
     }
 
+    @PostMapping("/channels/{channelId}/messages")
+    @ResponseBody
+    public Message postMessage(@PathVariable Long channelId, @RequestBody Message message, HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        User user = userService.findUserById(userId);
+        message.setUser(user);
+        Channel channel = channelService.findChannelById(channelId);
+        message.setChannelId(channel.getChannelId());
+        return messageService.saveMessage(message);
+    }
+
 
 }

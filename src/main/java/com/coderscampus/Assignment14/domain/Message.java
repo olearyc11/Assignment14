@@ -3,7 +3,7 @@ package com.coderscampus.Assignment14.domain;
 public class Message {
 
     private Long messageId;
-    private String message;
+    private String messageContent;
 
     private User user;
 
@@ -11,9 +11,9 @@ public class Message {
 
 
 
-    public Message(Long messageId, String message, User user, Long channelId) {
+    public Message(Long messageId, String messageContent, User user, Long channelId) {
         this.messageId = messageId;
-        this.message = message;
+        this.messageContent = messageContent;
         this.user = user;
         this.channelId = channelId;
     }
@@ -26,12 +26,12 @@ public class Message {
         this.messageId = messageId;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMessageContent() {
+        return messageContent;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
     }
 
     public User getUser() {
@@ -55,7 +55,7 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "id=" + messageId +
-                ", message='" + message + '\'' +
+                ", message='" + messageContent + '\'' +
                 ", user=" + user +
                 ", channelId=" + channelId +
                 '}';

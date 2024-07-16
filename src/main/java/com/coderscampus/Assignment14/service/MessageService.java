@@ -16,24 +16,11 @@ public class MessageService {
     @Autowired
     MessageRepository messageRepository;
 
-    private List<Message> messages = new ArrayList<>();
-
-
-    public List<Message> getMessagesByChannelId(Channel channel) {
-        List<Message> channelMessages = new ArrayList<>();
-        for (Message message : messages) {
-            if (message.getChannelId().equals(channel.getChannelId())) {
-                channelMessages.add(message);
-            }
-        }
-        return channelMessages;
+    public Message saveMessage(Message message) {
+        return messageRepository.saveMessage(message);
     }
 
-    public List<Message> saveMessage(Message message) {
-        Long messageId = (long) (messages.size() + 1);
-        message.setMessageId(messageId);
-        messages.add(message);
-        return messages;
-    } // maybe just return message?
-
+    public List<Message> getMessagesByChannelId(Channel channel) {
+        return messageRepository.getMessagesByChannelId(channel);
+    }
 }
