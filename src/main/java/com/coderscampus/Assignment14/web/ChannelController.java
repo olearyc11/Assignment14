@@ -33,7 +33,9 @@ public class ChannelController {
         User user = userService.findUserById(userId);
         Channel channel = channelService.findChannelById(channelId);
         model.put("channel", channel);
+        System.out.println(channel.toString());
         model.put("user", user);
+        System.out.println(user.toString());
         return "channel";
     }
 
@@ -52,6 +54,7 @@ public class ChannelController {
         message.setUser(user);
         Channel channel = channelService.findChannelById(channelId);
         message.setChannelId(channel.getChannelId());
+        System.out.println(message.getMessageContent());
         return messageService.saveMessage(message);
     }
 
