@@ -45,7 +45,4 @@ public class WelcomeController {
         model.put("channels", channels);
         return "welcome";
     }
-
-
-
 }

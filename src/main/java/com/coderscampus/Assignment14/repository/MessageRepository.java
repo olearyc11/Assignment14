@@ -16,8 +16,9 @@ public class MessageRepository {
         Long messageId = (long) (messages.size() + 1);
         message.setMessageId(messageId);
         messages.add(message);
+        System.out.println(message.toString());
         return message;
-    } // maybe just return message?
+    }
 
     public List<Message> getMessagesByChannelId(Channel channel) {
         List<Message> channelMessages = new ArrayList<>();
@@ -28,6 +29,5 @@ public class MessageRepository {
         }
         return channelMessages;
     }
-
 
 }
