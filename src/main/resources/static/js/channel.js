@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log(messageElement);
                 document.getElementById("chatRoom").appendChild(messageElement);
                 messageInput.value = "";
+                console.log("Username: " + username);
+                console.log("ChannelId: " + channelId);
+                console.log("UserId: " + userId);
             })
             .catch(error => console.error('Error:', error));
     });
