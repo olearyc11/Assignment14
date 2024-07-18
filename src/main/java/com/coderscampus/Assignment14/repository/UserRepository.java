@@ -35,4 +35,12 @@ public class UserRepository {
     }
 
 
+    public User findByUsername(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
 }

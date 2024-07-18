@@ -20,3 +20,6 @@ Storage
     -> Session Storage
         - browser's storage
         - client side, unlike Httpsession (server side)
+
+
+NEED TO USE SESSION STORAGE, NOT HTTP SESSION

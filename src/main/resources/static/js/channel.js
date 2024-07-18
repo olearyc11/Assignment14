@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(message => {
                 const messageElement = document.createElement("div");
                 // messageElement.textContent = `${message.username}: ${message.content}`
-                messageElement.textContent = `${message.user.username}: ${message.messageContent}`;
+                messageElement.textContent =  `${message.user.username} : ${message.messageContent}`;
                 console.log(messageElement);
                 document.getElementById("chatRoom").appendChild(messageElement);
                 messageInput.value = "";
@@ -37,3 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error('Error:', error));
     });
 });
+
+
+

@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ChannelController {
@@ -58,4 +59,5 @@ public class ChannelController {
         message.setChannelId(channel.getChannelId());
         return messageService.saveMessage(message);
     }
+
 }
