@@ -36,6 +36,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+function fetchMessages(channelId) {
+    fetch(`/channels/${channelId}/messages`)
+        .then(response => response.json())
+        .then(messages => {
+            const chatRoom = document.getElementById("chatRoom");
+            chatRoom.innerHTML = "";
+            messages.forEach(message => {
+                const messageElement = document.createElement("div");
+                messageElement.textContent = `${message.user.username}: ${message.messageContent}`;
+                chatRoom.appendChild(messageElement);
+            });
+        })
+        .catch(error => console.error('Error fetching the channel messages:', error));
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const channelId = document.getElementById("channel_id").value;
+    setInterval(function() {
+        fetchMessages(channelId);
+    }, 2000);
+});
 
 
 

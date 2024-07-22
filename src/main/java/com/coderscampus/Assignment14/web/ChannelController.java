@@ -43,4 +43,11 @@ public class ChannelController {
         return messageService.saveMessage(message);
     }
 
+    @GetMapping("/channels/{channelId}/messages")
+    @ResponseBody
+    public List<Message> getMessagesForChannel(@PathVariable Long channelId) {
+        Channel channel = channelService.findChannelById(channelId);
+        return messageService.getMessagesByChannelId(channelId);
+    }
+
 }
