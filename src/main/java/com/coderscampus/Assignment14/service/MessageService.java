@@ -20,7 +20,7 @@ public class MessageService {
         return messageRepository.saveMessage(message);
     }
 
-    public List<Message> getMessagesByChannelId(Channel channel) {
-        return messageRepository.getMessagesByChannelId(channel);
+    public List<Message> getMessagesByChannelId(Long channelId) {
+        return messageRepository.getMessagesByChannelId(channelId);
     }
 }

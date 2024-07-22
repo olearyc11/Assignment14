@@ -17,9 +17,10 @@ public class ChannelRepository {
 
     private List<Channel> channels = new ArrayList<>();
     private AtomicLong channelIdGenerator = new AtomicLong();
-    private List<Message> messages = new ArrayList<>();
+    private final MessageRepository messageRepository;
 
-    public ChannelRepository() {
+    public ChannelRepository(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
         channels.add(new Channel(1L, "Business", new ArrayList<>()));
         channels.add(new Channel(2L, "Cooking", new ArrayList<>()));
         channels.add(new Channel(3L, "Gaming", new ArrayList<>()));
@@ -43,20 +44,21 @@ public class ChannelRepository {
     public Channel findChannelById(Long channelId) {
         for (Channel channel : channels) {
             if (channel.getChannelId().equals(channelId)) {
+                channel.setMessages(messageRepository.getMessagesByChannelId(channelId));
                 return channel;
             }
         }
         return null;
     }
 
-    public List<Message> getMessagesByChannelId(Channel channel) {
-        List<Message> channelMessages = new ArrayList<>();
-        for (Message message : messages) {
-            if (message.getChannelId().equals(channel.getChannelId())) {
-                channelMessages.add(message);
-            }
-        }
-        return channelMessages;
-    }
+//    public List<Message> getMessagesByChannelId(Channel channel) {
+//        List<Message> channelMessages = new ArrayList<>();
+//        for (Message message : messages) {
+//            if (message.getChannelId().equals(channel.getChannelId())) {
+//                channelMessages.add(message);
+//            }
+//        }
+//        return channelMessages;
+//    }
 
 }

@@ -27,8 +27,4 @@ public class ChannelService {
     public Channel findChannelById(Long channelId) {
         return channelRepository.findChannelById(channelId);
     }
-
-    public List<Message> getMessagesByChannelId(Channel channel) {
-        return channelRepository.getMessagesByChannelId(channel);
-    }
 }

@@ -26,37 +26,20 @@ public class ChannelController {
     private MessageService messageService;
 
     @GetMapping("/channels/{channelId}")
-    public String getChannel(@PathVariable Long channelId, HttpSession session, ModelMap model) {
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId == null) {
-            return "redirect:/welcome";
-        }
-        User user = userService.findUserById(userId);
+    public String getChannel(@PathVariable Long channelId, ModelMap model) {
         Channel channel = channelService.findChannelById(channelId);
         model.put("channel", channel);
-        model.put("user", user);
-        System.out.println("Session ID: " + session.getId());
-        System.out.println("User ID from session: " + userId);
-        System.out.println("User: " + user);
-        System.out.println("Channel: " + channel);
         return "channel";
-    }
-
-    @GetMapping("/channels/{channelId}/messages")
-    @ResponseBody
-    public List<Message> getChannelMessages(@PathVariable Long channelId) {
-        Channel channel = channelService.findChannelById(channelId);
-        return messageService.getMessagesByChannelId(channel);
     }
 
     @PostMapping("/channels/{channelId}/messages")
     @ResponseBody
-    public Message postMessage(@PathVariable Long channelId, @RequestBody Message message, HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
-        User user = userService.findUserById(userId);
-        message.setUser(user);
+    public Message postMessage(@PathVariable Long channelId, @RequestBody Map<String, String> payload) {
+        String username = payload.get("username");
+        String messageContent = payload.get("messageContent");
+        User user = userService.findUserByUsername(username);
         Channel channel = channelService.findChannelById(channelId);
-        message.setChannelId(channel.getChannelId());
+        Message message = new Message(null, messageContent, user, channelId);
         return messageService.saveMessage(message);
     }
 

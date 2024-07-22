@@ -20,10 +20,10 @@ public class MessageRepository {
         return message;
     }
 
-    public List<Message> getMessagesByChannelId(Channel channel) {
+    public List<Message> getMessagesByChannelId(Long channelId) {
         List<Message> channelMessages = new ArrayList<>();
         for (Message message : messages) {
-            if (message.getChannelId().equals(channel.getChannelId())) {
+            if (message.getChannelId().equals(channelId)) {
                 channelMessages.add(message);
             }
         }

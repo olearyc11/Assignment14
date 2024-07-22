@@ -24,14 +24,13 @@ public class WelcomeController {
 
 
     @PostMapping("/welcome")
-    public String saveUser(@RequestBody User user, HttpSession session) {
+    @ResponseBody
+    public User saveUser(@RequestBody Map<String, String> payload) {
+        String username = payload.get("username");
+        User user = new User(null, username);
         userService.save(user);
         System.out.println("User saved: " + user);
-        session.setAttribute("username", user.getUsername());
-        session.setAttribute("userId", user.getUserId());
-        System.out.println("Session username: " + session.getAttribute("username"));
-        System.out.println("Session userID: " + session.getAttribute("userId"));
-        return "redirect:/welcome";
+        return user;
     }
 
     @GetMapping("/welcome")

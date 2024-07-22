@@ -21,5 +21,8 @@ Storage
         - browser's storage
         - client side, unlike Httpsession (server side)
 
+ResponseBody
+    -> controller method annotation that returns a JSON response
+
 
 NEED TO USE SESSION STORAGE, NOT HTTP SESSION

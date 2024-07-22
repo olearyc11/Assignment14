@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
             username = prompt("Enter your username:")
             if (username) {
                 sessionStorage.setItem("username", username)
-                let sessionUsername = sessionStorage.getItem("username")
-                console.log("Username set in session storage: " + sessionUsername)
+                console.log("Username set in local storage: " + username)
                 fetch('/welcome', {
                     method: 'POST',
                     headers: {
@@ -14,11 +13,21 @@ document.addEventListener("DOMContentLoaded", function() {
                     },
                     body: JSON.stringify( {username: username} )
                 })
-                    .then(response => response.text())
-                    .catch(error => console.error(error))
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(user => {
+                        sessionStorage.setItem("userId", user.userId);
+                        console.log("UserId set in session storage: " + user.userId);
+                        window.location.href = "/welcome";
+                    })
+                    .catch(error => console.error('Fetch error:', error));
             } else {
-                alert("Username cannot be empty, please enter a valid username")
+                alert("Username cannot be empty, please enter a valid username");
             }
         }
     }
-})
+});
