@@ -50,15 +50,4 @@ public class ChannelRepository {
         }
         return null;
     }
-
-//    public List<Message> getMessagesByChannelId(Channel channel) {
-//        List<Message> channelMessages = new ArrayList<>();
-//        for (Message message : messages) {
-//            if (message.getChannelId().equals(channel.getChannelId())) {
-//                channelMessages.add(message);
-//            }
-//        }
-//        return channelMessages;
-//    }
-
 }

@@ -22,7 +22,6 @@ public class WelcomeController {
     @Autowired
     private ChannelService channelService;
 
-
     @PostMapping("/welcome")
     @ResponseBody
     public User saveUser(@RequestBody Map<String, String> payload) {

@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let username = sessionStorage.getItem('username')
+    let username = sessionStorage.getItem('username');
     if (!username) {
         while (!username) {
-            username = prompt("Enter your username:")
+            username = prompt("Enter your username:");
             if (username) {
-                sessionStorage.setItem("username", username)
-                console.log("Username set in local storage: " + username)
+                sessionStorage.setItem("username", username);
+                console.log("Username set in local storage: " + username);
                 fetch('/welcome', {
                     method: 'POST',
                     headers: {

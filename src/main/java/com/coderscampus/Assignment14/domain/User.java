@@ -3,7 +3,6 @@ package com.coderscampus.Assignment14.domain;
 public class User {
 
     private Long userId;
-//    @JsonProperty("username") not needed?
     private String username;
 
     public User(Long userId, String username) {
