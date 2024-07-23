@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${channel.name}"></title>
-    <script src="/js/channel.js"></script>
+    <link rel="stylesheet" href="/js/css/styles.css">
+    <script src="/js/js/channel.js"></script>
 </head>
 <body>
     <h2 th:text="${channel.name}"></h2>
-    <div id="chatRoom">
+    <div id="chatRoom" class="chat_room">
         <!-- Messages? -->
     </div>
-    <form id="messageBox">
-        <input type="text" id="messageInput" placeholder="Chat here...">
+    <form id="messageBox" class="message_box">
+        <input type="text" id="messageInput" class="message_input" placeholder="Chat here...">
         <button type="submit" id="send_button">Send</button>
     </form>
     <input type="hidden" id="channel_id" th:value="${channel.channelId}">

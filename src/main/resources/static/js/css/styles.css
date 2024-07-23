@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.chat_room {
+    border: 1px solid #ccc;
+    height: 400px;
+    width: 300px;
+    overflow-y: scroll;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.message_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.message_input {
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    resize: none; /* Prevent resizing */
+}
+
+#send_button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
