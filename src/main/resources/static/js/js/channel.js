@@ -47,8 +47,14 @@ function fetchMessages(channelId) {
                 messageElement.textContent = `${message.user.username}: ${message.messageContent}`;
                 chatRoom.appendChild(messageElement);
             });
+            scrollToBottom();
         })
         .catch(error => console.error('Error fetching the channel messages:', error));
+}
+
+function scrollToBottom() {
+    const chatRoom = document.getElementById("chatRoom");
+    chatRoom.scrollTop = chatRoom.scrollHeight;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
