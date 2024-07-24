@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const channelId = document.getElementById("channel_id").value;
     setInterval(function() {
         fetchMessages(channelId);
-    }, 500);
+    }, 100);
 });
 
 
