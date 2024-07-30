@@ -1,7 +1,8 @@
 package com.coderscampus.Assignment14.domain;
-
+import lombok.Data;
 import java.util.List;
 
+@Data
 public class Channel {
 
     private Long channelId;
@@ -13,39 +14,4 @@ public class Channel {
         this.name = name;
         this.messages = messages;
     }
-
-    public Long getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(Long channelId) {
-        this.channelId = channelId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
-
-    @Override
-    public String toString() {
-        return "Channel{" +
-                "id=" + channelId +
-                ", name='" + name + '\'' +
-                ", messages=" + messages +
-                '}';
-    }
-
-
 }
