@@ -28,6 +28,7 @@ public class ChannelController {
 
     @GetMapping("/channels/{channelId}")
     public String getChannel(@PathVariable Long channelId, ModelMap model) {
+
         Channel channel = channelService.findChannelById(channelId);
         model.put("channel", channel);
         return "channel";
