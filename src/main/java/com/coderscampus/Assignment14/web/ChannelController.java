@@ -27,7 +27,25 @@ public class ChannelController {
     private MessageService messageService;
 
     @GetMapping("/channels/{channelId}")
-    public String getChannel(@PathVariable Long channelId, ModelMap model, HttpSession session) {
+    public String getChannel(@PathVariable Long channelId, ModelMap model, HttpSession session, @RequestParam(value = "sessionId", required = false) String sessionId) {
+        if (sessionId == null || sessionId.isEmpty()) {
+            return "redirect:/welcome";
+        }
+
+        Long userId = (Long) session.getAttribute("userId_" + sessionId);
+        if (userId == null) {
+            return "redirect:/welcome";
+        }
+
+        User user = userService.findUserById(userId);
+        model.put("user", user);
+
+        Channel channel = channelService.findChannelById(channelId);
+        model.put("channel", channel);
+        return "channel";
+    }
+
+
 //        Long userId = (Long) session.getAttribute("userId");
 //        System.out.println(userId);
 //        if (userId == null) {
@@ -38,10 +56,10 @@ public class ChannelController {
 //            session.setAttribute("userId", user.getUserId());
 //            model.put("user", user);
 //        }
-        Channel channel = channelService.findChannelById(channelId);
-        model.put("channel", channel);
-        return "channel";
-    }
+//        Channel channel = channelService.findChannelById(channelId);
+//        model.put("channel", channel);
+//        return "channel";
+//    }
 
     @PostMapping("/channels/{channelId}/messages")
     @ResponseBody

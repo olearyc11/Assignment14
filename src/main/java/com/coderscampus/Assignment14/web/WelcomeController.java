@@ -23,13 +23,7 @@ public class WelcomeController {
     private ChannelService channelService;
 
     @GetMapping("/welcome")
-    public String welcome(ModelMap model, HttpSession session) {
-        String username = (String) session.getAttribute("username");
-        User user = null;
-        if (username != null) {
-            user = userService.findUserByUsername(username);
-        }
-        model.addAttribute("user", user);
+    public String welcome(ModelMap model) {
         List<Channel> channels = channelService.getAllChannels();
         model.put("channels", channels);
         return "welcome";
@@ -39,13 +33,17 @@ public class WelcomeController {
     @ResponseBody
     public User saveUser(@RequestBody Map<String, String> payload, HttpSession session) {
         String username = payload.get("username");
+        String sessionId = payload.get("sessionId");
+        System.out.println("SessionId: " + sessionId);
+
         User user = new User(null, username);
         userService.save(user);
         System.out.println("User saved: " + user);
-        session.setAttribute("username", user.getUsername());
-        session.setAttribute("userId", user.getUserId());
+
+        session.setAttribute("sessionId", sessionId);
+        session.setAttribute("username_" + sessionId, user.getUsername());
+        session.setAttribute("userId_" + sessionId, user.getUserId());
+
         return user;
     }
-
-
 }
