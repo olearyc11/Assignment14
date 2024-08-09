@@ -44,7 +44,7 @@ public class ChannelController {
         model.put("channel", channel);
         return "channel";
     }
-    
+
     @PostMapping("/channels/{channelId}/messages")
     @ResponseBody
     public Message postMessage(@PathVariable Long channelId, @RequestBody Map<String, String> payload) {
