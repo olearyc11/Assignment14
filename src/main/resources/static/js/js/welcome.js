@@ -39,9 +39,17 @@
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-    let username = sessionStorage.getItem('username');
-    if (username) {
-        handleExistingUser(username);
+    let userId = document.getElementById("userId").value;
+    let username = document.getElementById("username").value;
+
+    console.log("Initializing with UserId: " + userId + " and Username: " + username);
+
+    if (userId && username) {
+        sessionStorage.setItem("userId", userId);
+        sessionStorage.setItem("username", username);
+        console.log("Username set in session storage: " + username);
+        console.log("UserId set in session storage: " + userId);
+        handleExistingUser()
     } else {
         promptForUsername();
     }
@@ -76,8 +84,8 @@ function saveUsername(username) {
         .then(user => {
             sessionStorage.setItem("userId", user.userId);
             sessionStorage.setItem("username", user.username);
-            console.log("Username set in session storage: " + user.username);
-            console.log("UserId set in session storage: " + user.userId);
+            console.log("Username set in session storage after PostMapping welcome method: " + user.username);
+            console.log("UserId set in session storage after PostMapping welcome method: " + user.userId);
             redirectToWelcome();
         })
         .catch(error => {

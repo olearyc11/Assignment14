@@ -22,25 +22,30 @@ public class WelcomeController {
     @Autowired
     private ChannelService channelService;
 
-    @PostMapping("/welcome")
-    @ResponseBody
-    public User saveUser(@RequestBody Map<String, String> payload) {
-        String username = payload.get("username");
-        User user = new User(null, username);
-        userService.save(user);
-        System.out.println("User saved: " + user);
-        return user;
-    }
-
     @GetMapping("/welcome")
     public String welcome(ModelMap model, HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId != null) {
-            User user = userService.findUserById(userId);
-            model.put("user", user);
+        String username = (String) session.getAttribute("username");
+        User user = null;
+        if (username != null) {
+            user = userService.findUserByUsername(username);
         }
+        model.addAttribute("user", user);
         List<Channel> channels = channelService.getAllChannels();
         model.put("channels", channels);
         return "welcome";
     }
+
+    @PostMapping("/welcome")
+    @ResponseBody
+    public User saveUser(@RequestBody Map<String, String> payload, HttpSession session) {
+        String username = payload.get("username");
+        User user = new User(null, username);
+        userService.save(user);
+        System.out.println("User saved: " + user);
+        session.setAttribute("username", user.getUsername());
+        session.setAttribute("userId", user.getUserId());
+        return user;
+    }
+
+
 }

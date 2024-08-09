@@ -27,8 +27,17 @@ public class ChannelController {
     private MessageService messageService;
 
     @GetMapping("/channels/{channelId}")
-    public String getChannel(@PathVariable Long channelId, ModelMap model) {
-
+    public String getChannel(@PathVariable Long channelId, ModelMap model, HttpSession session) {
+//        Long userId = (Long) session.getAttribute("userId");
+//        System.out.println(userId);
+//        if (userId == null) {
+//            return "redirect:/welcome";
+//        } else {
+//            User user = userService.findUserById(userId);
+//            session.setAttribute("username", user.getUsername());
+//            session.setAttribute("userId", user.getUserId());
+//            model.put("user", user);
+//        }
         Channel channel = channelService.findChannelById(channelId);
         model.put("channel", channel);
         return "channel";
